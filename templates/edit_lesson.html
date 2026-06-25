@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Edit: {{ lesson.title }}</h2>
+
+<form method="POST" class="mt-4">
+    <div class="mb-3">
+        <label class="form-label">Lesson Content</label>
+        <textarea name="content" class="form-control" rows="15">{{ lesson.content }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="/lesson/{{ lesson.id }}" class="btn btn-secondary ms-2">Cancel</a>
+</form>
+
+{% endblock %}

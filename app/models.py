@@ -1,5 +1,6 @@
 from app.extensions import db, login_manager
 from flask_login import UserMixin
+from datetime import date
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -8,11 +9,13 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), nullable=False)
     xp = db.Column(db.Integer, default=0)
     streak = db.Column(db.Integer, default=0)
+    last_login = db.Column(db.Date, default=date.today)
 
 class Lesson(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(300))
+    content = db.Column(db.Text)
     order = db.Column(db.Integer)
     exercises = db.relationship('Exercise', backref='lesson', lazy=True)
 

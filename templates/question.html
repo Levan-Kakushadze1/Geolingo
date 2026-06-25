@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="mb-3">
+    <span class="badge bg-success fs-6">Question {{ current }} of {{ total }}</span>
+</div>
+
+<div class="card p-4 mt-3">
+    <h3>{{ exercise.question }}</h3>
+
+    <form method="POST" class="mt-4">
+        {% if exercise.options %}
+            {% for opt in exercise.options %}
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="answer" value="{{ opt }}" required>
+                <label class="form-check-label fs-5">{{ opt }}</label>
+            </div>
+            {% endfor %}
+        {% else %}
+            <input type="text" name="answer" class="form-control mb-3" placeholder="Type your answer..." required>
+        {% endif %}
+
+        <button type="submit" class="btn btn-success btn-lg mt-3">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

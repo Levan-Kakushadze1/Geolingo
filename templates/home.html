@@ -1,4 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>გამარჯობა Geolingo-ზე!</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-0">Hello, {{ current_user.username }}! 👋</h2>
+        <p class="text-muted">Keep up the great work!</p>
+    </div>
+    <div class="d-flex gap-3">
+        <div class="card px-4 py-2 text-center">
+            <span class="fw-bold text-success" style="font-size: 1.5rem;">{{ current_user.xp }}</span>
+            <span class="text-muted small">XP 🏆</span>
+        </div>
+        <div class="card px-4 py-2 text-center">
+            <span class="fw-bold text-warning" style="font-size: 1.5rem;">{{ current_user.streak }}</span>
+            <span class="text-muted small">Streak 🔥</span>
+        </div>
+    </div>
+</div>
+
+<h4 class="fw-bold mb-3">Your Lessons</h4>
+<div class="row g-3">
+    {% for lesson in lessons %}
+    <div class="col-md-6">
+        <div class="card p-3 h-100 {% if lesson.id in completed_ids %}border-warning{% endif %}">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <h5 class="fw-bold mb-1">{{ lesson.title }}</h5>
+                    <p class="text-muted small mb-2">{{ lesson.description }}</p>
+                </div>
+                {% if lesson.id in completed_ids %}
+                    <span class="badge bg-warning text-dark">✅ Done</span>
+                {% endif %}
+            </div>
+            <a href="/lesson/{{ lesson.id }}" class="btn btn-success btn-sm mt-2">
+                {% if lesson.id in completed_ids %}Review{% else %}Start{% endif %}
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card mt-4 p-4 text-center" style="background: linear-gradient(135deg, #58cc02, #46a302); color: white;">
+    <h4 class="fw-bold">💬 Practice with Gio</h4>
+    <p class="mb-3">Chat with your AI Georgian teacher and improve your skills!</p>
+    <a href="/chat" class="btn btn-light fw-bold">Start Chatting</a>
+</div>
+
 {% endblock %}

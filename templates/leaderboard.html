@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center">🏆 Leaderboard</h2>
+<p class="text-center text-muted">Top 10 Georgian learners</p>
+
+<div class="mt-4">
+    {% for user in users %}
+    <div class="card mb-2 p-3 d-flex flex-row align-items-center justify-content-between">
+        <div>
+            <span class="fw-bold me-3">
+                {% if loop.index == 1 %} 🥇
+                {% elif loop.index == 2 %} 🥈
+                {% elif loop.index == 3 %} 🥉
+                {% else %} {{ loop.index }}.
+                {% endif %}
+            </span>
+            {{ user.username }}
+            {% if current_user.is_authenticated and user.id == current_user.id %}
+                <span class="badge bg-success ms-2">You</span>
+            {% endif %}
+        </div>
+        <div>
+            <span class="text-success fw-bold">{{ user.xp }} XP</span>
+            <span class="text-warning ms-3">🔥 {{ user.streak }}</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="text-center mt-4">
+    <a href="/" class="btn btn-success">Back to Lessons</a>
+</div>
+
+{% endblock %}

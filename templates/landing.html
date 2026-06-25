@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="text-center mt-5">
+    <h1 class="display-3 fw-bold">Learn Georgian <img src="https://flagcdn.com/w40/ge.png" height="40"></h1>
+    <p class="lead mt-3">The fun, fast, and free way to learn the Georgian language.</p>
+    <p class="text-muted">Interactive lessons. Real progress. Zero boredom.</p>
+
+    <div class="mt-4">
+        <a href="/register" class="btn btn-success btn-lg me-3">Get Started — It's Free!</a>
+        <a href="/login" class="btn btn-outline-success btn-lg">Log In</a>
+    </div>
+</div>
+
+<div class="row mt-5 text-center">
+    <div class="col-md-4">
+        <h3>📚 Structured Lessons</h3>
+        <p>Learn step by step from the alphabet to full conversations.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>🔥 Daily Streaks</h3>
+        <p>Build a habit by learning a little every day.</p>
+    </div>
+    <div class="col-md-4">
+        <h3>🏆 Earn XP</h3>
+        <p>Answer correctly and climb the leaderboard.</p>
+    </div>
+</div>
+
+{% endblock %}
